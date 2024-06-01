@@ -1,59 +1,63 @@
 #!/usr/bin/env python
-"""The setup and build script for the python-telegram-bot library."""
+# -*- coding: utf-8 -*-
+# @Name    : setup.py
+# @Author  : yanlee
 
-import codecs
-import os
-from setuptools import setup, find_packages
+import setuptools
+import shutil
 
+# 删除dist/目录
+shutil.rmtree('dist', ignore_errors=True)
 
-def requirements():
-    """Build the requirements list for this project"""
-    requirements_list = []
-
-    with open('requirements.txt') as requirements:
-        for install in requirements:
-            requirements_list.append(install.strip())
-
-    return requirements_list
-
-
-packages = find_packages(exclude=['tests*'])
-
-with codecs.open('README.rst', 'r', 'utf-8') as fd:
-    fn = os.path.join('telegram', 'version.py')
-    with open(fn) as fh:
-        code = compile(fh.read(), fn, 'exec')
-        exec(code)
-
-    setup(name='python-telegram-bot',
-          version=__version__,
-          author='Leandro Toledo',
-          author_email='devs@python-telegram-bot.org',
-          license='LGPLv3',
-          url='https://python-telegram-bot.org/',
-          keywords='python telegram bot api wrapper',
-          description="We have made you a wrapper you can't refuse",
-          long_description=fd.read(),
-          packages=packages,
-          install_requires=requirements(),
-          extras_require={
-              'json': 'ujson',
-              'socks': 'PySocks'
-          },
-          include_package_data=True,
-          classifiers=[
-              'Development Status :: 5 - Production/Stable',
-              'Intended Audience :: Developers',
-              'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)',
-              'Operating System :: OS Independent',
-              'Topic :: Software Development :: Libraries :: Python Modules',
-              'Topic :: Communications :: Chat',
-              'Topic :: Internet',
-              'Programming Language :: Python',
-              'Programming Language :: Python :: 2',
-              'Programming Language :: Python :: 2.7',
-              'Programming Language :: Python :: 3',
-              'Programming Language :: Python :: 3.4',
-              'Programming Language :: Python :: 3.5',
-              'Programming Language :: Python :: 3.6'
-          ],)
+setuptools.setup(
+    name="python-telegram-bot-pro",
+    version="2.1.1",
+    author="yanjlee",
+    author_email="yanjlee@163.com",
+    description="This project is dedicated to sharing and teaching the fundamentals and techniques of web reverse engineering. Web reverse engineering involves analyzing how websites and web applications work, and cracking or modifying existing code to achieve specific objectives. This project includes a series of tutorials, practical tools, and case studies aimed at helping developers, security researchers, and enthusiasts understand how to effectively reverse engineer web technologies.",  # 模块简介
+    install_requires=[
+        'requests',
+        'faker',
+        'execjs',
+        'loguru',
+        'base64',
+        'hashlib',
+        'Crypto',
+        'pandas',
+        'fuzzywuzzy',
+        'httpx',
+        'Pillow',
+        'playwright',
+        'PyExecJS',
+        'redis',
+        'fastapi',
+        'uvicorn',
+        'APScheduler',
+        'beautifulsoup4',
+        'bs4',
+        'certifi',
+        'clickhouse-driver',
+        'curl-cffi',
+        'DrissionPage',
+        'fake-useragent',
+        'Flask',
+        'Flask-APScheduler',
+        'Flask-Cors',
+        'frida',
+        'gevent',
+        'httpx',
+        'Jinja2',
+        'langchain',
+        'langchain-community',
+        'suiutils-py',
+    ],
+    long_description=open(r'readme.md', encoding='utf-8').read(),  # 读取readme自述文件
+    long_description_content_type="text/markdown",
+    url="https://github.com/yanjlee/python-telegram-bot",  # 模块github地址
+    packages=setuptools.find_packages(),     # 自动列出项目下的包
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",   # 开源许可证
+        "Operating System :: OS Independent",      # 这里的定义是系统无关（全平台兼容），如果你的包只能在部分特定系统上运行，需要修改。
+    ],
+)
